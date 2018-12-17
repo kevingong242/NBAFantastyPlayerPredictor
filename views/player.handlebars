@@ -82,8 +82,8 @@ $(document).ready(() => {
   }
 
   // when the button is clicked, run this function
-  $('#test-btn').click(() => {
-    const testSplit = $('#testing').val().split(' ');
+  $('#search-btn').click(() => {
+    const testSplit = $('#find-plyr').val().split(' ');
     const firstName = testSplit[0];
     const lastName = testSplit[1];
     const req = 'players/' + firstName + lastName;
@@ -100,7 +100,6 @@ $(document).ready(() => {
       type: 'GET',
       dataType: 'json',
       success: (data) =>{
-        console.log(data);
         var split = [
           {
             z:[[Number(data[0]) + Number(data[4]) / 2, Number(data[1]) + Number(data[4]) / 2, Number(data[2]) + Number(data[4]) / 2, Number(data[3]) + Number(data[4]) / 2],
@@ -121,7 +120,6 @@ $(document).ready(() => {
       type: 'GET',
       dataType: 'json',
       success: (data) => {
-        console.log(data);
         $('#player-picture').attr('src',playerUrl + playerImg);
         $('#player-name').html(data.name);
         $('#player-age').html(data.age);
@@ -213,8 +211,8 @@ function updateCellColor(field1, field2, data) {
     </div>
   </nav>
   <div style="text-align: center">
-    <input id="testing" placeholder="Find a Player" style="width: 80%; margin-top: 16px; height: 48px"></input>
-    <button class="btn" id="test-btn">Search</button>
+    <input id="find-plyr" placeholder="Find a Player" style="width: 80%; margin-top: 16px; height: 48px"></input>
+    <button class="btn" id="search-btn">Search</button>
   </div>
   <h1>Player Detail</h1>
   <div class="content-card" id="player-detail">
