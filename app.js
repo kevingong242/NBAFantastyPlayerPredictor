@@ -79,7 +79,6 @@ app.get('/scrape/:name', (req, res) =>{
       let $ = cheerio.load(data);
       $('tr').each(function(i, element){
         var a = $(this).prev();
-        //console.log(a.text());
         if(a.text().includes("1st") || a.text().includes("2nd") || a.text().includes("3rd") || a.text().includes("4th")){
           test.push(a.text().substring(a.text().indexOf("."),a.text().indexOf(".") + 4));
         }
@@ -94,7 +93,6 @@ app.get('/scrape/:name', (req, res) =>{
 //GET request that will show a json of all players in the database
 app.get('/players', (req,res) =>{
   var queryParameter = req.query;
-  console.log(queryParameter);
 	players.all('SELECT * FROM playerstable', (err, rows) => {
     res.send(rows);
   });
@@ -132,13 +130,11 @@ app.get('/players/:playerName', (req,res) => {
 //GET request to find a specific team's data
 app.get('/findTeam/:teamName', (req, res) => {
   const teamSearch = req.params.teamName;
-  console.log('TESTING: ' + teamSearch);
   players.all(
     'SELECT * FROM playerstable WHERE team = $team',
     {$team: teamSearch},
     (err, rows) => {
       if(rows.length > 0){
-        console.log("it worked");
         res.send(rows);
       }else{
         res.send({});

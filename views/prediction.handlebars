@@ -34,13 +34,11 @@ $(document).ready(() => {
       type: 'GET',
       dataType: 'json',
       success: (data) => {
-        console.log(data);
         // logic for determining prediction
         const record = data[secondTeam].split('-');
         const first = Number(record[0]);
         const second = Number(record[1]);
         const prob = Math.round((first / (first + second)) * 100);
-        console.log("Probability: " + prob);
         // append the prediction to the list of matches
         $('#predictions').append("<tr><td>" + firstTeam + ' <img src="' + firstSearch + '"></img>'+ "</td>" + "<td>vs.</td>" + "<td>" + secondTeam + ' <img src="' + secondSearch + '"></img>' + "<td>Probability of " + firstTeam + " winning: <b>" + prob + "%</b></td>");
       },

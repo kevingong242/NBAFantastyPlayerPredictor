@@ -43,10 +43,6 @@ As soon as the user enters in their team of choice in the top input field, a GET
         type: 'GET',
         dataType: 'json',
         success: (data) => {
-          //OLD CODE
-          /*for(let x=0; x<data.length; x++){
-          $('#roster').append($("<li></li>").text( data[x].name));
-        }*/
         for(let x=0; x<data.length; x++){
           const playerSearch = data[x].name;
           let first = playerSearch.charAt(0);
@@ -136,8 +132,6 @@ As soon as the user enters in their team of choice in the top input field, a GET
   $('#team-btn').click(() => {
     const teamSearch = $('#teamFind').val() + '-2018.png';
     const teamUrl = "https://d2p3bygnnzw9w3.cloudfront.net/req/201805011/tlogo/bbr/";
-    //console.log(teamUrl + teamSearch);
-    //console.log('/teams/' + $('#teamFind').val());
     $('#roster').empty();
     $.ajax({
       url: '/teams/' + $('#teamFind').val().toUpperCase(),
