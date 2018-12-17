@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+This page, prediction.handlebars, displays our Prediction page.
+The user, on this page, can see top teams and hypothetical games and win probabiltiies between them.
+If the user wishes, they can add two of their own teams to compete in a hypothetical game.
+Upon adding the two teams, they can see the probability of a win in the form of a percentage.
+This players are loaded through our Javascript code on the front-end, which contains AJAX calls to get information from our database.
+From the database, the logic implemented in our front-end code will calculate the percentage probability that a team wins against another team.
+This probability is then appended to the bottom of the existing list.
+-->
+<html>
+<head>
+<title>Prediction</title>
+ <link href="/css/styles.css" rel="stylesheet">
+ <!-- <link rel="stylesheet" href="/css/bootstrap.min.css" > -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+</script>
+<script>
+$(document).ready(() => {
+  // when the prediction button is clicked, run this function
+  $('#prediction-btn').click(() => {
+    const firstTeam = $('#predictionTeam1').val();
+    const secondTeam = $('#predictionTeam2').val();
+    const teamUrl = "https://d2p3bygnnzw9w3.cloudfront.net/req/201805011/tlogo/bbr/";
+    const firstSearch = teamUrl + firstTeam + '-2018.png';
+    const secondSearch = teamUrl + secondTeam + '-2018.png';
+    // AJAX GET request for team data
+    $.ajax({
+      url: 'teams/' + firstTeam,
+      type: 'GET',
+      dataType: 'json',
+      success: (data) => {
+        console.log(data);
+        // logic for determining prediction
+        const record = data[secondTeam].split('-');
+        const first = Number(record[0]);
+        const second = Number(record[1]);
+        const prob = Math.round((first / (first + second)) * 100);
+        console.log("Probability: " + prob);
+        // append the prediction to the list of matches
+        $('#predictions').append("<tr><td>" + firstTeam + ' <img src="' + firstSearch + '"></img>'+ "</td>" + "<td>vs.</td>" + "<td>" + secondTeam + ' <img src="' + secondSearch + '"></img>' + "<td>Probability of " + firstTeam + " winning: <b>" + prob + "%</b></td>");
+      },
+    });
+  });
+});
+</script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img href="/" src="../logo.png" alt="Logo" style="height: 36px; margin-right: 16px"></img>
+    <a class="navbar-brand" href="/" style="color: #E67747; font-weight: 600;">basket.</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/player">Players</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/team">Teams</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/prediction">Predict</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+<h1>Game Predictions</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <span class="border border-warning"></span>
+        <div class="card-body">
+            <h4>Predictions for Top 10 Teams</h4>
+          <table>
+            <tr>
+              <td><h2>EAST<h2></td>
+              <td></td>
+              <td><h2>WEST</h2></td>
+            </tr>
+            <tr>
+              <td id="team1A">HOU <img src="https://ssl.gstatic.com/onebox/media/sports/logos/zhO6MIB1UzZmtXLHkJQBmg_96x96.png"></img></td>
+              <td>vs.</td>
+
+              <td id="team1B">TOR <img src="https://ssl.gstatic.com/onebox/media/sports/logos/745IgW4NSvnRxg-W9oczmQ_96x96.png"></img></td>
+              <td id="prediction1">Probability of HOU winning: <b>0%</b></td>
+            </tr>
+            <tr>
+              <td id="team2A">GSW <img src="https://ssl.gstatic.com/onebox/media/sports/logos/XD2v321N_-vk7paF53TkAg_96x96.png"></img></td>
+              <td>vs.</td>
+              <td id="team2B">BOS <img src="https://ssl.gstatic.com/onebox/media/sports/logos/GDJBo7eEF8EO5-kDHVpdqw_96x96.png"></img></td>
+              <td id="prediction2">Probability of GSW winning: <b>50%</b></td>
+            </tr>
+            <tr>
+              <td id="team3A">POR <img src="https://ssl.gstatic.com/onebox/media/sports/logos/_bgagBCd6ieOIt3INWRN_w_96x96.png"></img></td>
+              <td>vs.</td>
+              <td id="team3B">PHI <img src="https://ssl.gstatic.com/onebox/media/sports/logos/US6KILZue2D5766trEf0Mg_96x96.png"></img></td>
+              <td id="prediction3">Probability of POR winning: <b>55%</b></td>
+            </tr>
+            <tr>
+              <td id="team4A">OKC <img src="https://ssl.gstatic.com/onebox/media/sports/logos/b4bJ9zKFBDykdSIGUrbWdw_96x96.png"></img></td>
+              <td>vs.</td>
+              <td id="team4B">CLE <img src="https://ssl.gstatic.com/onebox/media/sports/logos/NAlGkmv45l1L-3NhwVhDPg_96x96.png"></img></td>
+              <td id="prediction4">Probability of OKC winning: <b>50%</b></td>
+            </tr>
+            <tr>
+              <td id="team5A">UTA <img src="https://ssl.gstatic.com/onebox/media/sports/logos/SP_dsmXEKFVZH5N1DQpZ4A_96x96.png"></img></td>
+              <td>vs.</td>
+              <td id="team5B">IND <img src="https://ssl.gstatic.com/onebox/media/sports/logos/andumiE_wrpDpXvUgqCGYQ_96x96.png"></img></td>
+              <td id="prediction5">Probability of UTA winning: <b>50%</b></td>
+            </tr>
+            </table>
+            <td><h4>Your Own Predictions</h4></td>
+            <td>
+              <h4>Predict any game:</h4>
+            <table id="predictions">
+            </table>
+            <tr>
+              <td>
+                <input class="form-control mr-sm-2" id="predictionTeam1"  placeholder="Team A" aria-label="Search">
+              </td>
+              <td>
+                <input class="form-control mr-sm-2" id="predictionTeam2"  placeholder="Team B" aria-label="Search">
+              </td>
+              <td>
+                <button class="btn btn-outline-success my-2 my-sm-0" id="prediction-btn">Predict</button>
+              </td>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+</body>

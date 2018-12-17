@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+This page, index.handlebars, is the "Home" page for our application.
+This page contains links to all major features of our application, and contains quickly-accessible information that is presented in cards.
+The user, upon loading the "Home" page, can see top player rankings, top team rankings, upcoming games, game highlights, and basketball news.
+The players/teams/games are loaded onto the front-end by Javascript code.
+The game highlights are powered by YouTube's API for integrating videos on websites.
+The basketball news are powered by Twitter's API for integrating Twitter feeds onto websites.
+-->
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <title>Home</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(() => {
+  });
+</script>
+<script>
+// function for accessing the database to load information onto cards
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+</script>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img href="/" src="../logo.png" alt="Logo" style="height: 36px; margin-right: 16px"></img>
+    <a class="navbar-brand" href="/" style="color: #E67747; font-weight: 600;">basket.</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/player">Players</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/team">Teams</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/prediction">Predict</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row" style="margin-top: 16px">
+        <div class="col" style="margin-bottom: 32px">
+            <h1>Rankings</h1>
+            <div class="card" style="width: 18rem;">
+              <span class="border border-warning"></span>
+              <div class="card-body" id="player-list">
+                <ol type="1">
+                  <li id="rank1"><a href="/player?first=James&last=Harden">James Harden</a></li>
+                  <li id="rank2"><a href="/player?first=Anthony&last=Davis">Anthony Davis</a></li>
+                  <li id="rank3"><a href="/player?first=Giannis&last=Antetokounmpo">Giannis Antetokounmpo</a></li>
+                  <li id="rank4"><a href="/player?first=Damian&last=Lillard">Damian Lillard</a></li>
+                  <li id="rank5"><a href="/player?first=Stephen&last=Curry">Stephen Curry</a></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        <div class="col">
+            <h1>Overall Standings</h1>
+            <div class="card" style="width: 18rem;">
+              <span class="border border-warning"></span>
+              <div class="card-body">
+                <ol type="1">
+                  <li>
+                    <list id="team1"><a href="/team?name=HOU">Houston Rockets</a></list>
+                  </li>
+                  <li>
+                    <list id="team2"><a href="/team?name=TOR">Toronto Raptors</a></list>
+                  </li>
+                  <li>
+                    <list id="team3"><a href="/team?name=GSW">Golden State Warriors</a></list>
+                  </li>
+                  <li>
+                    <list id="team4"><a href="/team?name=BOS">Boston Celtics</a></list>
+                  </li>
+                  <li>
+                    <list id="team5"><a href="/team?name=PHI">Philadelphia 76ers</a></list>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-left:16px; margin-right:16px">
+      <div class="col-sm-6">
+      <div class="card">
+          <span class="border border-warning"></span>
+        <div class="card-body">
+          <h5 class="card-title">Game Highlights</h5>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/HbT6r9zNMZM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+          <span class="border border-warning"></span>
+        <div class="card-body" style= "max-height: 399px; overflow:scroll;">
+          <h5 class="card-title">Trending</h5>
+          <a class="twitter-timeline" href="https://twitter.com/wojespn?ref_src=twsrc%5Etfw">Tweets by wojespn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+</html>

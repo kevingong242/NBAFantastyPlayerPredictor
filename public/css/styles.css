@@ -1,0 +1,138 @@
+/* This file, styles.css, is one of our CSS stylesheets that defines design specifications for major components of our application, such as text, spacing, cards, colors, etc.
+We utilize this file in order to make sure that all of our web pages have similar look-and-feel and to ensure consistent visual design across devices. */
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700'); */
+
+body {
+  background-color: #E1F0FC !important;
+  /*font-family: 'Roboto', sans-serif;*/
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+h1 {
+  /*font-size: 30px;*/
+  font-weight: 700;
+  color: #ACACAC;
+  margin-left: 80px;
+  padding-top: 24px;
+  /*text-transform: uppercase;*/
+}
+
+h2 {
+  /*font-size: 30px;*/
+  font-weight: 500;
+  color: #000000;
+  text-align: center;
+  margin-left: 24px;
+}
+
+h3 {
+  /*font-size: 20px;*/
+  font-weight: 700;
+  color: #ACACAC;
+  text-transform: uppercase;
+  margin-bottom: 0px;
+  padding-top: 20px;
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.data-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ACACAC;
+  text-transform: uppercase;
+}
+
+.data-value {
+  font-size: 24px;
+  font-weight: 400;
+  color: #000000;
+}
+
+td {
+  padding-right: 80px;
+  padding-bottom: 40px;
+}
+
+.content-card {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: 60px;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-bottom: 80px;
+  box-shadow: 0px 0px 4px #CCCCCC;
+}
+
+#player-detail {
+  height: 320px;
+  margin-bottom: 40px;
+
+}
+
+#player-statistics {
+  height: 500px;
+}
+
+#player-trending {
+  height: 1000px;
+}
+
+.player-bio {
+  /* float: left; */
+  width: 280px;
+  padding-right: 60px;
+  border-right-style: solid;
+  border-right-color: #DDDDDD;
+  border-right-width: 2px;
+}
+
+.player-picture-wrapper {
+  display: inline-block;
+  position: relative;
+
+  width: 120px;
+  height: 120px;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.player-picture {
+  width: auto;
+  height: 100%;
+  margin-left: 30px;
+}
+
+.player-information {
+
+}
+
+#one {
+  margin-left: 100px;
+}
+
+.two-section {
+  margin-bottom: 80px;
+}
+#left-double-section {
+  float: left;
+  width: 700px;
+}
+
+#right-double-section {
+  float: right;
+  width: 700px;
+}
+
+#compare {
+  width:250px;
+}
+
+.name-label {
+  font-size: 16px;
+}
